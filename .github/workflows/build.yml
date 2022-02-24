@@ -21,7 +21,14 @@ jobs:
     needs: compile-matrix
     strategy:
       matrix:
-        include: ${{ fromJSON(needs.compile-matrix.outputs.include-list) }}
+        board:
+          - nice_nano
+        shield:
+          - duckboard
+        cmake-args: [""]
+        include:
+          - board: nice_nano
+            shield: duckboard
     steps:
       - name: Checkout
         uses: actions/checkout@v2
